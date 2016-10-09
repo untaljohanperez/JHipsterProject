@@ -1,0 +1,11 @@
+{
+    "bookingApp": {
+        "Sport" : {
+            "null": "",
+            "SOCCER": "SOCCER",
+            "SWIMMING": "SWIMMING",
+            "TENNIS": "TENNIS",
+            "BASKETBAL": "BASKETBAL"
+        }
+    }
+}

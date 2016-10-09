@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="bookingApp.booking.detail.title">Booking</span> {{vm.booking.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="bookingApp.booking.dateStart">Date Start</span></dt>
+        <dd>
+            <span>{{vm.booking.dateStart | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="bookingApp.booking.dateEnding">Date Ending</span></dt>
+        <dd>
+            <span>{{vm.booking.dateEnding | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="bookingApp.booking.customer">Customer</span></dt>
+        <dd>
+            <a ui-sref="customer-detail({id:vm.booking.customer.id})">{{vm.booking.customer.id}}</a>
+        </dd>
+        <dt><span data-translate="bookingApp.booking.fiel">Fiel</span></dt>
+        <dd>
+            <a ui-sref="field-detail({id:vm.booking.fiel.id})">{{vm.booking.fiel.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="booking-detail.edit({id:vm.booking.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

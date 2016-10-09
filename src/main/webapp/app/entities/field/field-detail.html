@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span data-translate="bookingApp.field.detail.title">Field</span> {{vm.field.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="bookingApp.field.name">Name</span></dt>
+        <dd>
+            <span>{{vm.field.name}}</span>
+        </dd>
+        <dt><span data-translate="bookingApp.field.address">Address</span></dt>
+        <dd>
+            <span>{{vm.field.address}}</span>
+        </dd>
+        <dt><span data-translate="bookingApp.field.sport">Sport</span></dt>
+        <dd>
+            <span data-translate="{{'bookingApp.Sport.' + vm.field.sport}}">{{vm.field.sport}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="field-detail.edit({id:vm.field.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

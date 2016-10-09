@@ -1,0 +1,24 @@
+{
+    "bookingApp": {
+        "field" : {
+            "home": {
+                "title": "Fields",
+                "createLabel": "Crear nuevo Field",
+                "createOrEditLabel": "Crear o editar Field",
+                "search": "Search for Field"
+            },
+            "created": "Un nuevo Field ha sido creado con el identificador {{ param }}",
+            "updated": "Un Field ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Field ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Field {{ id }}?"
+            },
+            "detail": {
+                "title": "Field"
+            },
+            "name": "Name",
+            "address": "Address",
+            "sport": "Sport"
+        }
+    }
+}

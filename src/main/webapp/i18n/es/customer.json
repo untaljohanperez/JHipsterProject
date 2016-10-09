@@ -1,0 +1,26 @@
+{
+    "bookingApp": {
+        "customer" : {
+            "home": {
+                "title": "Customers",
+                "createLabel": "Crear nuevo Customer",
+                "createOrEditLabel": "Crear o editar Customer",
+                "search": "Search for Customer"
+            },
+            "created": "Un nuevo Customer ha sido creado con el identificador {{ param }}",
+            "updated": "Un Customer ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Customer ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Customer {{ id }}?"
+            },
+            "detail": {
+                "title": "Customer"
+            },
+            "name": "Name",
+            "lastName": "Last Name",
+            "cellphone": "Cellphone",
+            "email": "Email",
+            "password": "Password"
+        }
+    }
+}

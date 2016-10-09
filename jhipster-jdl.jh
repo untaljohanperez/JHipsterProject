@@ -1,0 +1,42 @@
+
+
+entity Customer{
+	name String required,
+    lastName String required,
+    cellphone String required,
+    email String required,
+    password String required,
+}
+
+entity Field {
+	name String required,
+    address String required,
+    sport Sport required
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Booking {
+	dateStart ZonedDateTime required,
+	dateEnding ZonedDateTime required
+}
+
+enum Sport  {
+    SOCCER, SWIMMING, TENNIS, BASKETBAL
+}
+
+relationship ManyToOne {
+	Booking{customer} to Customer
+}
+
+relationship ManyToOne {
+	Booking{fiel} to Field
+}
+
+// Set pagination options
+paginate Booking, Customer, Field with pagination
+	
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+angularSuffix * with mySuffix
