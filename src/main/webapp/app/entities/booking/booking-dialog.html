@@ -70,13 +70,13 @@
 
         <div class="form-group">
             <label data-translate="bookingApp.booking.customer" for="field_customer">Customer</label>
-            <select class="form-control" id="field_customer" name="customer" ng-model="vm.booking.customer" ng-options="customer as customer.name for customer in vm.customers track by customer.id">
+            <select class="form-control" id="field_customer" name="customer" ng-model="vm.booking.customer" ng-options="customer as customer.name + ' ' + customer.lastName  for customer in vm.customers track by customer.id">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="bookingApp.booking.fiel" for="field_fiel">Fiel</label>
-            <select class="form-control" id="field_fiel" name="fiel" ng-model="vm.booking.fiel" ng-options="field as field.name for field in vm.fields track by field.id">
+            <select class="form-control" id="field_fiel" name="fiel" ng-model="vm.booking.fiel" ng-options="field as field.sport + ' - ' + field.name for field in vm.fields track by field.id">
                 <option value=""></option>
             </select>
         </div>

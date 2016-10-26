@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -72,4 +74,10 @@ public class BookingServiceImpl implements BookingService{
         log.debug("Request to delete Booking : {}", id);
         bookingRepository.delete(id);
     }
+    
+	@Override
+	public List<Booking> getBookingByDateAndField(ZonedDateTime dateEnding, ZonedDateTime dateStart, Long fieldId) {
+		log.debug("getBookingByDateAndField : {} {} {}", dateStart, dateEnding, fieldId);
+		return bookingRepository.findByDateStartLessThanAndDateEndingGreaterThanAndFiel_Id(dateEnding, dateStart, fieldId);
+	}
 }

@@ -3,6 +3,7 @@ package com.tertulia.booking.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.tertulia.booking.domain.Booking;
 import com.tertulia.booking.service.BookingService;
+import com.tertulia.booking.service.dto.BookingQueryDTO;
 import com.tertulia.booking.web.rest.util.HeaderUtil;
 import com.tertulia.booking.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -134,5 +135,16 @@ public class BookingResource {
         bookingService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("booking", id.toString())).build();
     }
-
+    
+    @RequestMapping(value = "/bookingsByDateAndField",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Booking>> getBookingByDateAndField(@Valid @RequestBody BookingQueryDTO params)
+        throws URISyntaxException {
+        log.debug("REST getBookingByDateAndField");
+        List<Booking> bookings = bookingService.getBookingByDateAndField(params.getDateEnding(), params.getDateStart(), params.getFieldId());
+        HttpHeaders headers = null;
+        return new ResponseEntity<List<Booking>>(bookings, headers, HttpStatus.OK);
+    }
 }

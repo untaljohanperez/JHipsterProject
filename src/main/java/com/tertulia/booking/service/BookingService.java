@@ -4,6 +4,7 @@ import com.tertulia.booking.domain.Booking;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -41,4 +42,6 @@ public interface BookingService {
      *  @param id the id of the entity
      */
     void delete(Long id);
+    
+    List<Booking> getBookingByDateAndField(ZonedDateTime dateEnding, ZonedDateTime dateStart, Long fieldId);
 }

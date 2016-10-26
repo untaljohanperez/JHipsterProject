@@ -28,11 +28,32 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.booking.id !== null) {
+            validateBooking();
+        }
+        
+        function saveBooking(){
+        	if (vm.booking.id !== null) {
                 Booking.update(vm.booking, onSaveSuccess, onSaveError);
             } else {
                 Booking.save(vm.booking, onSaveSuccess, onSaveError);
             }
+        }
+        
+        function validateBooking(){
+        	let query = {
+        			dateStart: vm.booking.dateStart,
+        			dateEnding: vm.booking.dateEnding,
+        			fieldId: vm.booking.fiel.id,
+        	}
+        	Booking.bookingsByDateAndField(query)
+        		.$promise.then( bookings => {
+        			if(bookings.length > 0){
+        				sweetAlert("Oops...", "This field is already reserved of a customer", "error");
+        				onSaveError ();
+        			}else{
+        				saveBooking();
+        			}	
+    		});
         }
 
         function onSaveSuccess (result) {

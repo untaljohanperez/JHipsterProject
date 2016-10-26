@@ -22,7 +22,21 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'bookingsByDateAndField': { 
+            	method:'POST', 
+            	url:'api/bookingsByDateAndField', 
+            	isArray: true,
+            	transformResponse: function (data) {
+                    if (data) {
+                    	console.log(data, 'dataService');
+                        data = angular.fromJson(data);
+                        data.dateStart = DateUtils.convertDateTimeFromServer(data.dateStart);
+                        data.dateEnding = DateUtils.convertDateTimeFromServer(data.dateEnding);
+                    }
+                    return data;
+                }
+        	}
         });
     }
 })();

@@ -63,5 +63,8 @@
   },
   "scripts": {
     "test": "gulp test"
+  },
+  "dependencies": {
+    "sweetalert": "^1.1.3"
   }
 }

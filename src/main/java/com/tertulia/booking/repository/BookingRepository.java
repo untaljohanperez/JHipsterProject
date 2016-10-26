@@ -4,6 +4,7 @@ import com.tertulia.booking.domain.Booking;
 
 import org.springframework.data.jpa.repository.*;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
@@ -12,4 +13,5 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface BookingRepository extends JpaRepository<Booking,Long> {
 
+	List<Booking> findByDateStartLessThanAndDateEndingGreaterThanAndFiel_Id(ZonedDateTime dateEndingdateStart, ZonedDateTime dateStart, Long fieldId);
 }
