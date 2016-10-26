@@ -34,6 +34,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.tertulia.booking.domain.enumeration.Status;
 /**
  * Test class for the BookingResource REST controller.
  *
@@ -53,6 +54,9 @@ public class BookingResourceIntTest {
     private static final ZonedDateTime DEFAULT_DATE_ENDING = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneId.systemDefault());
     private static final ZonedDateTime UPDATED_DATE_ENDING = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
     private static final String DEFAULT_DATE_ENDING_STR = dateTimeFormatter.format(DEFAULT_DATE_ENDING);
+
+    private static final Status DEFAULT_STATUS = Status.Active;
+    private static final Status UPDATED_STATUS = Status.Pending;
 
     @Inject
     private BookingRepository bookingRepository;
@@ -92,7 +96,8 @@ public class BookingResourceIntTest {
     public static Booking createEntity(EntityManager em) {
         Booking booking = new Booking()
                 .dateStart(DEFAULT_DATE_START)
-                .dateEnding(DEFAULT_DATE_ENDING);
+                .dateEnding(DEFAULT_DATE_ENDING)
+                .status(DEFAULT_STATUS);
         return booking;
     }
 
@@ -119,6 +124,7 @@ public class BookingResourceIntTest {
         Booking testBooking = bookings.get(bookings.size() - 1);
         assertThat(testBooking.getDateStart()).isEqualTo(DEFAULT_DATE_START);
         assertThat(testBooking.getDateEnding()).isEqualTo(DEFAULT_DATE_ENDING);
+        assertThat(testBooking.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
     @Test
@@ -159,6 +165,24 @@ public class BookingResourceIntTest {
 
     @Test
     @Transactional
+    public void checkStatusIsRequired() throws Exception {
+        int databaseSizeBeforeTest = bookingRepository.findAll().size();
+        // set the field null
+        booking.setStatus(null);
+
+        // Create the Booking, which fails.
+
+        restBookingMockMvc.perform(post("/api/bookings")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(booking)))
+                .andExpect(status().isBadRequest());
+
+        List<Booking> bookings = bookingRepository.findAll();
+        assertThat(bookings).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllBookings() throws Exception {
         // Initialize the database
         bookingRepository.saveAndFlush(booking);
@@ -169,7 +193,8 @@ public class BookingResourceIntTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(booking.getId().intValue())))
                 .andExpect(jsonPath("$.[*].dateStart").value(hasItem(DEFAULT_DATE_START_STR)))
-                .andExpect(jsonPath("$.[*].dateEnding").value(hasItem(DEFAULT_DATE_ENDING_STR)));
+                .andExpect(jsonPath("$.[*].dateEnding").value(hasItem(DEFAULT_DATE_ENDING_STR)))
+                .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
 
     @Test
@@ -184,7 +209,8 @@ public class BookingResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(booking.getId().intValue()))
             .andExpect(jsonPath("$.dateStart").value(DEFAULT_DATE_START_STR))
-            .andExpect(jsonPath("$.dateEnding").value(DEFAULT_DATE_ENDING_STR));
+            .andExpect(jsonPath("$.dateEnding").value(DEFAULT_DATE_ENDING_STR))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
@@ -207,7 +233,8 @@ public class BookingResourceIntTest {
         Booking updatedBooking = bookingRepository.findOne(booking.getId());
         updatedBooking
                 .dateStart(UPDATED_DATE_START)
-                .dateEnding(UPDATED_DATE_ENDING);
+                .dateEnding(UPDATED_DATE_ENDING)
+                .status(UPDATED_STATUS);
 
         restBookingMockMvc.perform(put("/api/bookings")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -220,6 +247,7 @@ public class BookingResourceIntTest {
         Booking testBooking = bookings.get(bookings.size() - 1);
         assertThat(testBooking.getDateStart()).isEqualTo(UPDATED_DATE_START);
         assertThat(testBooking.getDateEnding()).isEqualTo(UPDATED_DATE_ENDING);
+        assertThat(testBooking.getStatus()).isEqualTo(UPDATED_STATUS);
     }
 
     @Test

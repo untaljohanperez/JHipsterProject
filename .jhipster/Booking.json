@@ -28,13 +28,20 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "Active, Pending, Canceled",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20161009211700",
-    "javadoc": "not an ignored comment",
-    "entityTableName": "booking",
     "dto": "no",
-    "pagination": "pagination",
     "service": "serviceImpl",
-    "angularSuffix": "mySuffix"
+    "entityTableName": "booking",
+    "pagination": "pagination",
+    "javadoc": "not an ignored comment"
 }

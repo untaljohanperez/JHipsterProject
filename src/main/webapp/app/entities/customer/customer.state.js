@@ -128,7 +128,6 @@
                                 lastName: null,
                                 cellphone: null,
                                 email: null,
-                                password: null,
                                 id: null
                             };
                         }

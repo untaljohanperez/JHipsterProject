@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.time.ZonedDateTime;
 import java.util.Objects;
 
+import com.tertulia.booking.domain.enumeration.Status;
+
 /**
  * not an ignored comment                                                      
  * 
@@ -35,6 +37,11 @@ public class Booking implements Serializable {
     @NotNull
     @Column(name = "date_ending", nullable = false)
     private ZonedDateTime dateEnding;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private Status status;
 
     @ManyToOne
     private Customer customer;
@@ -74,6 +81,19 @@ public class Booking implements Serializable {
 
     public void setDateEnding(ZonedDateTime dateEnding) {
         this.dateEnding = dateEnding;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public Booking status(Status status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public Customer getCustomer() {
@@ -128,6 +148,7 @@ public class Booking implements Serializable {
             "id=" + id +
             ", dateStart='" + dateStart + "'" +
             ", dateEnding='" + dateEnding + "'" +
+            ", status='" + status + "'" +
             '}';
     }
 }

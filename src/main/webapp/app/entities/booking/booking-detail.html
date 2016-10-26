@@ -12,6 +12,10 @@
         <dd>
             <span>{{vm.booking.dateEnding | date:'medium'}}</span>
         </dd>
+        <dt><span data-translate="bookingApp.booking.status">Status</span></dt>
+        <dd>
+            <span data-translate="{{'bookingApp.Status.' + vm.booking.status}}">{{vm.booking.status}}</span>
+        </dd>
         <dt><span data-translate="bookingApp.booking.customer">Customer</span></dt>
         <dd>
             <a ui-sref="customer-detail({id:vm.booking.customer.id})">{{vm.booking.customer.id}}</a>

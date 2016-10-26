@@ -46,6 +46,7 @@
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('booking');
+                    $translatePartialLoader.addPart('status');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
@@ -68,6 +69,7 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('booking');
+                    $translatePartialLoader.addPart('status');
                     return $translate.refresh();
                 }],
                 entity: ['$stateParams', 'Booking', function($stateParams, Booking) {
@@ -126,6 +128,7 @@
                             return {
                                 dateStart: null,
                                 dateEnding: null,
+                                status: null,
                                 id: null
                             };
                         }

@@ -40,10 +40,12 @@
         <div class="form-group">
             <label class="control-label" data-translate="bookingApp.field.sport" for="field_sport">Sport</label>
             <select class="form-control" name="sport" ng-model="vm.field.sport" id="field_sport" required>
-                <option value="SOCCER" data-translate="bookingApp.Sport.SOCCER">SOCCER</option>
+            	<option value="SOCCER_5" data-translate="bookingApp.Sport.SOCCER_5">SOCCER 5</option>
+                <option value="SOCCER_12" data-translate="bookingApp.Sport.SOCCER_12">SOCCER 12</option>
                 <option value="SWIMMING" data-translate="bookingApp.Sport.SWIMMING">SWIMMING</option>
                 <option value="TENNIS" data-translate="bookingApp.Sport.TENNIS">TENNIS</option>
                 <option value="BASKETBAL" data-translate="bookingApp.Sport.BASKETBAL">BASKETBAL</option>
+                <option value="BMX" data-translate="bookingApp.Sport.BMX">BMX</option>
             </select>
             <div ng-show="editForm.sport.$invalid">
                 <p class="help-block"

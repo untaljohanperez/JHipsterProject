@@ -45,7 +45,7 @@ public class FieldResourceIntTest {
     private static final String DEFAULT_ADDRESS = "AAAAA";
     private static final String UPDATED_ADDRESS = "BBBBB";
 
-    private static final Sport DEFAULT_SPORT = Sport.SOCCER;
+    private static final Sport DEFAULT_SPORT = Sport.SOCCER_12;
     private static final Sport UPDATED_SPORT = Sport.SWIMMING;
 
     @Inject

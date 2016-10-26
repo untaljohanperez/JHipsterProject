@@ -38,10 +38,6 @@ public class Customer implements Serializable {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @NotNull
-    @Column(name = "password", nullable = false)
-    private String password;
-
     public Long getId() {
         return id;
     }
@@ -102,19 +98,6 @@ public class Customer implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public Customer password(String password) {
-        this.password = password;
-        return this;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -143,7 +126,6 @@ public class Customer implements Serializable {
             ", lastName='" + lastName + "'" +
             ", cellphone='" + cellphone + "'" +
             ", email='" + email + "'" +
-            ", password='" + password + "'" +
             '}';
     }
 }

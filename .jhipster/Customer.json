@@ -29,19 +29,11 @@
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "password",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
         }
     ],
     "changelogDate": "20161009211758",
-    "entityTableName": "customer",
     "dto": "no",
-    "pagination": "pagination",
     "service": "serviceImpl",
-    "angularSuffix": "mySuffix"
+    "entityTableName": "customer",
+    "pagination": "pagination"
 }

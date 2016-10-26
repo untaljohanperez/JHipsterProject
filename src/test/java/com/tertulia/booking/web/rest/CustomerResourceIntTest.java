@@ -47,8 +47,6 @@ public class CustomerResourceIntTest {
     private static final String UPDATED_CELLPHONE = "BBBBB";
     private static final String DEFAULT_EMAIL = "AAAAA";
     private static final String UPDATED_EMAIL = "BBBBB";
-    private static final String DEFAULT_PASSWORD = "AAAAA";
-    private static final String UPDATED_PASSWORD = "BBBBB";
 
     @Inject
     private CustomerRepository customerRepository;
@@ -90,8 +88,7 @@ public class CustomerResourceIntTest {
                 .name(DEFAULT_NAME)
                 .lastName(DEFAULT_LAST_NAME)
                 .cellphone(DEFAULT_CELLPHONE)
-                .email(DEFAULT_EMAIL)
-                .password(DEFAULT_PASSWORD);
+                .email(DEFAULT_EMAIL);
         return customer;
     }
 
@@ -120,7 +117,6 @@ public class CustomerResourceIntTest {
         assertThat(testCustomer.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testCustomer.getCellphone()).isEqualTo(DEFAULT_CELLPHONE);
         assertThat(testCustomer.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(testCustomer.getPassword()).isEqualTo(DEFAULT_PASSWORD);
     }
 
     @Test
@@ -197,24 +193,6 @@ public class CustomerResourceIntTest {
 
     @Test
     @Transactional
-    public void checkPasswordIsRequired() throws Exception {
-        int databaseSizeBeforeTest = customerRepository.findAll().size();
-        // set the field null
-        customer.setPassword(null);
-
-        // Create the Customer, which fails.
-
-        restCustomerMockMvc.perform(post("/api/customers")
-                .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                .content(TestUtil.convertObjectToJsonBytes(customer)))
-                .andExpect(status().isBadRequest());
-
-        List<Customer> customers = customerRepository.findAll();
-        assertThat(customers).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllCustomers() throws Exception {
         // Initialize the database
         customerRepository.saveAndFlush(customer);
@@ -227,8 +205,7 @@ public class CustomerResourceIntTest {
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
                 .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME.toString())))
                 .andExpect(jsonPath("$.[*].cellphone").value(hasItem(DEFAULT_CELLPHONE.toString())))
-                .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())))
-                .andExpect(jsonPath("$.[*].password").value(hasItem(DEFAULT_PASSWORD.toString())));
+                .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL.toString())));
     }
 
     @Test
@@ -245,8 +222,7 @@ public class CustomerResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME.toString()))
             .andExpect(jsonPath("$.cellphone").value(DEFAULT_CELLPHONE.toString()))
-            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()))
-            .andExpect(jsonPath("$.password").value(DEFAULT_PASSWORD.toString()));
+            .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL.toString()));
     }
 
     @Test
@@ -271,8 +247,7 @@ public class CustomerResourceIntTest {
                 .name(UPDATED_NAME)
                 .lastName(UPDATED_LAST_NAME)
                 .cellphone(UPDATED_CELLPHONE)
-                .email(UPDATED_EMAIL)
-                .password(UPDATED_PASSWORD);
+                .email(UPDATED_EMAIL);
 
         restCustomerMockMvc.perform(put("/api/customers")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -287,7 +262,6 @@ public class CustomerResourceIntTest {
         assertThat(testCustomer.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testCustomer.getCellphone()).isEqualTo(UPDATED_CELLPHONE);
         assertThat(testCustomer.getEmail()).isEqualTo(UPDATED_EMAIL);
-        assertThat(testCustomer.getPassword()).isEqualTo(UPDATED_PASSWORD);
     }
 
     @Test

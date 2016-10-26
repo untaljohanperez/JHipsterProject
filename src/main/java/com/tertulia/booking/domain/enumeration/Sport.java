@@ -4,5 +4,5 @@ package com.tertulia.booking.domain.enumeration;
  * The Sport enumeration.
  */
 public enum Sport {
-    SOCCER,SWIMMING,TENNIS,BASKETBAL
+    SOCCER_5,SOCCER_12,SWIMMING,TENNIS,BASKETBAL,BMX,SOCCER
 }

@@ -3,9 +3,12 @@
         "Sport" : {
             "null": "",
             "SOCCER": "SOCCER",
+            "SOCCER_5": "SOCCER 5",
+            "SOCCER_12": "SOCCER 12",
             "SWIMMING": "SWIMMING",
             "TENNIS": "TENNIS",
-            "BASKETBAL": "BASKETBAL"
+            "BASKETBAL": "BASKETBAL",
+            "BMX": "BMX"
         }
     }
 }

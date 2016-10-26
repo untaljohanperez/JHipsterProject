@@ -18,6 +18,7 @@
             },
             "dateStart": "Date Start",
             "dateEnding": "Date Ending",
+            "status": "Status",
             "customer": "Customer",
             "fiel": "Fiel"
         }

@@ -19,8 +19,7 @@
             "name": "Name",
             "lastName": "Last Name",
             "cellphone": "Cellphone",
-            "email": "Email",
-            "password": "Password"
+            "email": "Email"
         }
     }
 }

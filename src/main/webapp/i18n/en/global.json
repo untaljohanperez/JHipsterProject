@@ -9,6 +9,7 @@
                 "main": "Entities",
                 "booking": "Booking",
                 "customer": "Customer",
+                "field": "Field",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
