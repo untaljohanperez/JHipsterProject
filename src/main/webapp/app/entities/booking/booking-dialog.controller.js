@@ -40,6 +40,12 @@
         }
         
         function validateBooking(){
+        	if(vm.booking.dateStart >= vm.booking.dateEnding){
+        		sweetAlert("Oops...", "The date range is incorrect", "error");
+        		onSaveError ();
+        		return;
+        	}
+        	
         	let query = {
         			dateStart: vm.booking.dateStart,
         			dateEnding: vm.booking.dateEnding,
